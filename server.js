@@ -106,8 +106,8 @@ app.put('/api/books/:id', function(req, res){
   db.Book.findOne({_id: bookId}, function(err, foundBook){
     foundBook.title = req.body.title;
     foundBook.author = req.body.author;
-    // foundBook.image = req.body.image;
-    // foundBook.releaseDate = req.body.releaseDate;
+    foundBook.image = req.body.image;
+    foundBook.releaseDate = req.body.releaseDate;
 
     //save updated book in database
     foundBook.save(function(err, savedBook){
