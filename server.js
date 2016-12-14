@@ -80,6 +80,7 @@ app.get('/api/books', function (req, res) {
 });
 
 app.get('/api/books/:id', function(req, res){
+  //send one specific book id as JSON response
   var bookId = req.params.id;
 
   db.Book.findOne({_id: bookId}, function(err, foundBook){
