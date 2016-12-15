@@ -94,6 +94,23 @@ app.delete('/api/books/:id', function (req, res) {
 
 
 
+//route do add one embebed character to one book
+app.post('/api/books/:book_id/characters', function (req, res){
+  var bookId = req.params.book_id;
+  db.Book.findById(bookId)
+    .populate('author')
+    .exec(function(err, foundBook){
+      if(err){
+        res.status(500).json({error: err.message});
+      }else{
+        foundBook.characters.push(req.body);
+        foundBook.save();
+        res.json(foundBook);
+      }
+    })
+});
+
+
 
 app.listen(process.env.PORT || 3000, function () {
   console.log('Example app listening at http://localhost:3000/');

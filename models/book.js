@@ -1,6 +1,11 @@
 var mongoose = require('mongoose'),
-  Schema = mongoose.Schema;
+  Schema = mongoose.Schema,
   Author = require('./author');
+
+//this has to be declared before you called it on the BookSchema.
+var CharacterSchema = new Schema({
+  name: String
+});
 
 var BookSchema = new Schema({
      title: String,
@@ -10,9 +15,8 @@ var BookSchema = new Schema({
      characters: [CharacterSchema]
 });
 
-var CharacterSchema = new Schema({
-  name: String
-});
 
 var Book = mongoose.model('Book', BookSchema);
+//do I need the line bellow when doing embebed?
+var Character = mongoose.model('Character', CharacterSchema);
 module.exports = Book;
