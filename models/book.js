@@ -7,7 +7,11 @@ var BookSchema = new Schema({
      author: {type: Schema.Types.ObjectId, ref: 'Author'},
      image: String,
      releaseDate: String,
-     characters: [String]
+     characters: [CharacterSchema]
+});
+
+var CharacterSchema = new Schema({
+  name: String
 });
 
 var Book = mongoose.model('Book', BookSchema);
